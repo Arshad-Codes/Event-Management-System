@@ -8,6 +8,7 @@ import java.util.List;
 
 @RequestMapping("/api/event")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class EventController {
     private EventService eventService;
 

@@ -1,10 +1,9 @@
 package com.EMS.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,12 +11,13 @@ import java.util.List;
 
 public class Event {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eventID;
     private String name;
     private String description;
     private LocalDate date;
     private String location;
-    private List<String> attendees;
+    private List<String> attendees = new ArrayList<>();
 
     public int getEventID() {
         return eventID;
@@ -67,12 +67,16 @@ public class Event {
         this.attendees = attendees;
     }
 
-    public Event(int eventID, String name, String description, LocalDate date, String location) {
+    public void addAttendee(String attendee) {
+        this.attendees.add(attendee);
+    }
+    public Event(int eventID, String name, String description, LocalDate date, String location, List<String> attendees) {
         this.eventID = eventID;
         this.name = name;
         this.description = description;
         this.date = date;
         this.location = location;
+        this.attendees = attendees;
     }
 
     public Event() {
