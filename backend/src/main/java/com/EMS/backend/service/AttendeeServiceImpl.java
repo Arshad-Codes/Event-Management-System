@@ -29,10 +29,10 @@ public class AttendeeServiceImpl implements AttendeeService{
     }
 
     @Override
-    public String createAttendee(Attendee attendee, int eventID) {
+    public Event createAttendee(Attendee attendee, int eventID) {
         Event event = eventRepository.findById(eventID).get();
         if(event == null){
-            return "Event not found";
+            return null;
         }
 
         attendee.setEvent(event);
@@ -41,7 +41,6 @@ public class AttendeeServiceImpl implements AttendeeService{
         event.addAttendee(attendee.getFullName());
         eventRepository.save(event);
 
-
-        return "Attendee Successfully created";
+        return eventRepository.findById(eventID).get();
     }
 }

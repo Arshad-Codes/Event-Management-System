@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/EventList.css"; 
 import axios from "axios";
 
-const EventList = ({ events, onEdit, onDelete, onDetail }) => {
+const EventList = ({ events, onEdit, onDelete, onDetail, onAttendeeAdded }) => {
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [attendeeName, setAttendeeName] = useState("");
    const [currentEventId, setCurrentEventId] = useState(null);
@@ -15,12 +15,13 @@ const EventList = ({ events, onEdit, onDelete, onDetail }) => {
    };
    const handleAddAttendee = async () => {
      if (attendeeName && currentEventId) {
-       await axios.post(`http://localhost:8080/api/attendee/${currentEventId}`, {
+       const response = await axios.post(`http://localhost:8080/api/attendee/${currentEventId}`, {
          fullName: attendeeName,
        });
        setIsModalOpen(false); 
        setAttendeeName("");
-       setCurrentEventId(null); 
+       setCurrentEventId(null);
+       onAttendeeAdded(response.data); 
      }
    };
 

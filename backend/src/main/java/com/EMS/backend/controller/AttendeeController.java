@@ -2,6 +2,7 @@ package com.EMS.backend.controller;
 
 
 import com.EMS.backend.model.Attendee;
+import com.EMS.backend.model.Event;
 import com.EMS.backend.service.AttendeeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class AttendeeController {
         return attendeeService.getAttendee(id);
     }
     @PostMapping("/{eventId}")
-    public String createAttendee(@RequestBody Attendee attendee, @PathVariable int eventId) {
+    public Event createAttendee(@RequestBody Attendee attendee, @PathVariable int eventId) {
         return attendeeService.createAttendee(attendee, eventId);
     }
 

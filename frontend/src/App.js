@@ -26,6 +26,17 @@ const App = () => {
     }
   };
 
+  const onAttendeeAdded = (updatedEvent) => {
+    setEvents(
+      events.map((event) =>
+        event.eventID === updatedEvent.eventID ? updatedEvent : event
+      )
+    );
+    if (currentEvent && currentEvent.eventID === updatedEvent.eventID) {
+      setCurrentEvent(updatedEvent); 
+    }
+  };
+
   const handleAddEvent = async (event) => {
     try {
       await axios.post("http://localhost:8080/api/event", event);
@@ -91,6 +102,7 @@ const App = () => {
         onEdit={openModal}
         onDelete={handleDeleteEvent}
         onDetail={openDetailModal}
+        onAttendeeAdded={onAttendeeAdded}
       />
       <Modal
         isOpen={isModalOpen}
