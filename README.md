@@ -6,7 +6,10 @@
         npm install
         npm start
 
-## Mysql is used as the database fro this project.We need to know the my sql username and password to run the backend server:
+## for running the backend
+Mysql is used as the database fro this project.
+We need to know the my sql username and password.
+To run the backend server:
     create a schema in the sql named "event_management"
     open the file Event-Management-System/backend/src/main/resources/application.properties
     there, enter username and password for the mysql.
